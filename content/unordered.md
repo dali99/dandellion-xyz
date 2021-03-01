@@ -71,7 +71,7 @@ We first remove from \\(a_n\\) from \\(u\\):
 
 Then we do just  the same thing as in we did to find \\(a\\), but this time we change the base similarly to how we did it when we encoded,
 we're just dividing instead of multiplying.
-NB: $a_u$ the "unordered" "\\(a\\)" is what's being used here, NOT the original \\(a\\).
+NB: \\(a_u\\) the "unordered" "\\(a\\)" is what's being used here, NOT the original \\(a\\).
 
 {% katex(block=true) %}
 \begin{alignedat}{2}
