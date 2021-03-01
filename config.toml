@@ -28,5 +28,7 @@ taxonomies = [
 [extra]
 # Put all your custom variables here
 
+even_title = "Daniel Olsen"
+
 katex_enable = true
 katex_auto_render = true
