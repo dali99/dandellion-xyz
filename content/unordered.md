@@ -13,6 +13,8 @@ I won't go into much detail about that here, this blog post is about this "unord
 I'm sure someone somewhere has discovered such numbers already, but I have no idea what they're called.
 If you do know, feel free to point it out to me [via email!](mailto:me@dandellion.xyz)
 
+<!-- more -->
+
 I'll do an example of given a \\(\text{base}_0 = 10\\) three digit number: \\(562\\).
 
 First we must sort the digits in ascending order, I've named each position in the number \\(a\\), \\(b\\), and \\(c\\).
