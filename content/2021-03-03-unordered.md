@@ -1,7 +1,9 @@
 +++
 title = "Unordered Numbers"
 date = 2021-03-01
+updated = 2021-03-03
 
+slug = "unordered"
 [taxonomies]
 categories = ["Technical", "All"]
 tags = ["Math", "Azul"]
@@ -119,7 +121,7 @@ I've turned the ideas into a functions which are a little more concise.
 &n(x)=\lfloor \log x \rfloor + 1 \\
 &f(x, y) = \frac{(y \mod 10^{n(y)+1-x}) - (y \mod 10^{n(y)-x})}{10^{n(y)-x}} \\
 &u(o) = \sum_{i = 1}^{n(o)} f(i,o)*(10-f(i-1, o))^{n(o)-i}  &o \in \text{A009994} \\
-&o(u) = \sum_{i=1}^{n(u)} \frac{f(i, u)*10^{n(u)-i}}{(10-f(i-1, u))^{n(u)-i}} &u \in \text{A009994}
+&o(u) = \sum_{i=1}^{n(u)} \frac{f(i, u)*10^{n(u)-i}}{(10-f(i-1, u))^{n(u)-i}}*10^{n(u)-i} &u \in \text{A009994}
 \end{aligned}
 {% end %}
 
