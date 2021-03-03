@@ -108,3 +108,24 @@ Success!!
 
 I guess we'll have to see how much CPU time this takes versus the space savings. But I'm certain this kind of thing can be useful!  
 Maybe for serializing unordered sets?
+
+
+# Update 2021-03-03
+
+I've turned the ideas into a functions which are a little more concise.
+
+{% katex(block=true) %}
+\begin{aligned}
+&n(x)=\lfloor \log x \rfloor + 1 \\
+&f(x, y) = \frac{(y \mod 10^{n(y)+1-x}) - (y \mod 10^{n(y)-x})}{10^{n(y)-x}} \\
+&u(o) = \sum_{i = 1}^{n(o)} f(i,o)*(10-f(i-1, o))^{n(o)-i}  &o \in \text{A009994} \\
+&o(u) = \sum_{i=1}^{n(u)} \frac{f(i, u)*10^{n(u)-i}}{(10-f(i-1, u))^{n(u)-i}} &u \in \text{A009994}
+\end{aligned}
+{% end %}
+
+\\(f(x, y)\\) takes an index \\(x\\) and a number \\(y\\), then gives you the digit at that position from left to right.
+
+\\(n(x)\\) is used to count how many digits there are in a number.
+
+\\(u(o)\\) encodes a number sorted so it's digits are in creasing order to unordered  
+\\(o(u)\\) decodes an unordered number back into a ordered number.
