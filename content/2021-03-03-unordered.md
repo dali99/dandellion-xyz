@@ -131,3 +131,44 @@ I've turned the ideas into a functions which are a little more concise.
 
 \\(u(o)\\) encodes a number to it's unordered representation (digits must be in increasing order)
 \\(o(u)\\) decodes an unordered number back into a "ordered" number.
+
+# Update #2 2021-03-03
+
+{% python() %}
+from math import log10,floor
+
+def n(x):
+    return floor(log10(x))+1
+
+def f(x, y):
+    return (y%10**(n(y)+1-x) - y%10**(n(y)-x))/(10**(n(y)-x))
+
+def u(o):
+    sum = 0
+    for i in range(1, n(o)+1):
+        sum += f(i, o)*(10-f(i-1, o))**(n(o)-i)
+    return sum
+
+def o(u):
+    sum = 0
+    for i in range(1, n(u)+1):
+        sum += (f(i, u)*10**(n(u)-i)/((10-f(i-1,u))**(n(u)-i)))*10**(n(u)-i)
+    return sum
+
+print(u(256))
+print(o(246))
+
+from itertools import combinations_with_replacement
+
+def A009994generator(max):
+    yield 1
+    l = 1
+    while l < max:
+        for i in combinations_with_replacement('123456789', l):
+            yield int(''.join(i))
+        l += 1
+
+for i in A009994generator(4):
+    print("{}: {}".format(i, u(i)))
+
+{% end %}
