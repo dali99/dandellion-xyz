@@ -129,5 +129,5 @@ I've turned the ideas into a functions which are a little more concise.
 
 \\(n(x)\\) is used to count how many digits there are in a number.
 
-\\(u(o)\\) encodes a number sorted so it's digits are in creasing order to unordered  
-\\(o(u)\\) decodes an unordered number back into a ordered number.
+\\(u(o)\\) encodes a number to it's unordered representation (digits must be in increasing order)
+\\(o(u)\\) decodes an unordered number back into a "ordered" number.
