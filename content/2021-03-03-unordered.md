@@ -15,7 +15,7 @@ The more compact this could be done the faster my `memcpy`s become, and the more
 
 The main idea is to create a number that represents a single uniqe combination of elements, without the order of those elements mattering.
 
-for example `u([1, 2, 3])` = `u([1, 2, 3])` = \\(65\\) if all the elements are base10.
+for example `u([1, 2, 3])` = `u([1, 2, 3])` = \\(65\\) if all the elements are base 10.
 
 if you know there are three elements which can be 10 different values, then the number is the same as what's found in [A009994](https://oeis.org/A009994)
 
@@ -23,7 +23,7 @@ if you know there are three elements which can be 10 different values, then the 
 from itertools import combinations_with_replacement
 
 # Taken from [OESIS](https://oeis.org/A009994)
-# Thanks  
+# Thanks  Chai Wah Wu
 def A009994generator(max):
     l = 1
     while l < max:
@@ -35,6 +35,233 @@ for n,i in enumerate(A009994generator(4), start=1):
     print("{}: {}".format(n, i))
 
 {% end %}
+
+<details>
+<summary>Alternative nonjs log</summary>
+
+```
+1: 1
+2: 2
+3: 3
+4: 4
+5: 5
+6: 6
+7: 7
+8: 8
+9: 9
+10: 11
+11: 12
+12: 13
+13: 14
+14: 15
+15: 16
+16: 17
+17: 18
+18: 19
+19: 22
+20: 23
+21: 24
+22: 25
+23: 26
+24: 27
+25: 28
+26: 29
+27: 33
+28: 34
+29: 35
+30: 36
+31: 37
+32: 38
+33: 39
+34: 44
+35: 45
+36: 46
+37: 47
+38: 48
+39: 49
+40: 55
+41: 56
+42: 57
+43: 58
+44: 59
+45: 66
+46: 67
+47: 68
+48: 69
+49: 77
+50: 78
+51: 79
+52: 88
+53: 89
+54: 99
+55: 111
+56: 112
+57: 113
+58: 114
+59: 115
+60: 116
+61: 117
+62: 118
+63: 119
+64: 122
+65: 123
+66: 124
+67: 125
+68: 126
+69: 127
+70: 128
+71: 129
+72: 133
+73: 134
+74: 135
+75: 136
+76: 137
+77: 138
+78: 139
+79: 144
+80: 145
+81: 146
+82: 147
+83: 148
+84: 149
+85: 155
+86: 156
+87: 157
+88: 158
+89: 159
+90: 166
+91: 167
+92: 168
+93: 169
+94: 177
+95: 178
+96: 179
+97: 188
+98: 189
+99: 199
+100: 222
+101: 223
+102: 224
+103: 225
+104: 226
+105: 227
+106: 228
+107: 229
+108: 233
+109: 234
+110: 235
+111: 236
+112: 237
+113: 238
+114: 239
+115: 244
+116: 245
+117: 246
+118: 247
+119: 248
+120: 249
+121: 255
+122: 256
+123: 257
+124: 258
+125: 259
+126: 266
+127: 267
+128: 268
+129: 269
+130: 277
+131: 278
+132: 279
+133: 288
+134: 289
+135: 299
+136: 333
+137: 334
+138: 335
+139: 336
+140: 337
+141: 338
+142: 339
+143: 344
+144: 345
+145: 346
+146: 347
+147: 348
+148: 349
+149: 355
+150: 356
+151: 357
+152: 358
+153: 359
+154: 366
+155: 367
+156: 368
+157: 369
+158: 377
+159: 378
+160: 379
+161: 388
+162: 389
+163: 399
+164: 444
+165: 445
+166: 446
+167: 447
+168: 448
+169: 449
+170: 455
+171: 456
+172: 457
+173: 458
+174: 459
+175: 466
+176: 467
+177: 468
+178: 469
+179: 477
+180: 478
+181: 479
+182: 488
+183: 489
+184: 499
+185: 555
+186: 556
+187: 557
+188: 558
+189: 559
+190: 566
+191: 567
+192: 568
+193: 569
+194: 577
+195: 578
+196: 579
+197: 588
+198: 589
+199: 599
+200: 666
+201: 667
+202: 668
+203: 669
+204: 677
+205: 678
+206: 679
+207: 688
+208: 689
+209: 699
+210: 777
+211: 778
+212: 779
+213: 788
+214: 789
+215: 799
+216: 888
+217: 889
+218: 899
+219: 999
+```
+
+</details>
 
 Unfortuanetly I've been unable to make a function to convert between them. Though I'm working on it...  
 Until that I guess sorting the elements and looking it up in a table will work 😕
@@ -178,9 +405,19 @@ print(u(256))
 print(o(246))
 {% end %}
 
+<details>
+<summary>Alternative nonjs log</summary>
+
+```
+246.0
+256.0
+```
+
+</details>
+
 **Update #3 2021-03-03**
 
 Unfortuanetly these functions do not give a perfect compression level.  
-_It is better_ just not perfect, and probably not worth it
+_It is better_, just not perfect, and probably not worth it
 
 </details>
