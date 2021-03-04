@@ -1,7 +1,7 @@
 +++
 title = "Unordered Numbers"
 date = 2021-03-01
-updated = 2021-03-03
+updated = 2021-03-04
 
 slug = "unordered"
 [taxonomies]
@@ -11,11 +11,36 @@ tags = ["Math", "Azul"]
 While working on my azul AI I needed a cheap way to store combinations of combinations of tiles to copy around in memory.
 The more compact this could be done the faster my `memcpy`s become, and the more gamestates can be cached in working memory.
 
-I won't go into much detail about that here, this blog post is about this "unordered number" discovery.
-I'm sure someone somewhere has discovered such numbers already, but I have no idea what they're called.
-If you do know, feel free to point it out to me [via email!](mailto:me@dandellion.xyz)
-
 <!-- more -->
+
+The main idea is to create a number that represents a single uniqe combination of elements, without the order of those elements mattering.
+
+for example `u([1, 2, 3])` = `u([1, 2, 3])` = \\(65\\) if all the elements are base10.
+
+if you know there are three elements which can be 10 different values, then the number is the same as what's found in [A009994](https://oeis.org/A009994)
+
+{% python() %}
+from itertools import combinations_with_replacement
+
+# Taken from [OESIS](https://oeis.org/A009994)
+# Thanks  
+def A009994generator(max):
+    l = 1
+    while l < max:
+        for i in combinations_with_replacement('123456789', l):
+            yield int(''.join(i))
+        l += 1
+
+for n,i in enumerate(A009994generator(4), start=1):
+    print("{}: {}".format(n, i))
+
+{% end %}
+
+Unfortuanetly I've been unable to make a function to convert between them. Though I'm working on it...  
+Until that I guess sorting the elements and looking it up in a table will work 😕
+
+<details>
+<summary>2020-03-01 failed attempt at impementation</summary>
 
 I'll do an example of given a \\(\text{base}_0 = 10\\) three digit number: \\(562\\).
 
@@ -106,13 +131,7 @@ At last, now that we have \\(a\\), \\(b\\), and \\(c\\) we can construct \\(n\\)
 \end{alignedat}
 {% end %}
 
-Success!!
-
-I guess we'll have to see how much CPU time this takes versus the space savings. But I'm certain this kind of thing can be useful!  
-Maybe for serializing unordered sets?
-
-
-# Update 2021-03-03
+**Update 2021-03-03**
 
 I've turned the ideas into a functions which are a little more concise.
 
@@ -132,7 +151,7 @@ I've turned the ideas into a functions which are a little more concise.
 \\(u(o)\\) encodes a number to it's unordered representation (digits must be in increasing order)
 \\(o(u)\\) decodes an unordered number back into a "ordered" number.
 
-# Update #2 2021-03-03
+**Update #2 2021-03-03**
 
 {% python() %}
 from math import log10,floor
@@ -157,18 +176,11 @@ def o(u):
 
 print(u(256))
 print(o(246))
-
-from itertools import combinations_with_replacement
-
-def A009994generator(max):
-    yield 1
-    l = 1
-    while l < max:
-        for i in combinations_with_replacement('123456789', l):
-            yield int(''.join(i))
-        l += 1
-
-for i in A009994generator(4):
-    print("{}: {}".format(i, u(i)))
-
 {% end %}
+
+**Update #3 2021-03-03**
+
+Unfortuanetly these functions do not give a perfect compression level.  
+_It is better_ just not perfect, and probably not worth it
+
+</details>
