@@ -263,6 +263,65 @@ for n,i in enumerate(A009994generator(4), start=1):
 
 </details>
 
+
+I believe this could be useful to compress bitfields:
+```rust
+
+//An enum with four variants:
+enum Stuff {
+  One,
+  Two,
+  Three,
+  Four
+}
+```
+if you put this into a bitfield you could store, `[One, Two, Three, Four]` as something like `00100111` (each element of the bitfield is LSB First for reasons that will become clear later)  
+But if you don't care about whether or not it's `[One, Two, Three, Four]` or `[Two, One, Four, Three]` you could sort the list so that it's `[One, Two, Three, Four]`  
+The first element could be any of the four variants so it "uses" 4 values: `(00)`, the second element can also be any of the 4 variants, it too "uses" 4 values. `(00)(10)`.  
+But now the third element can only be one of three variants, `Two`, `Three`, or `Four`. spending two whole bits on that would be a 25% waste of space! Can we use it later?  
+If we use the "index" of the available options as the bit value we might be able to do it `(00)(10)(10)`.  
+The fourth element can be one of only two variants, `Three`, or `Four`, that's only one bit. We did have one extra value to use from before.  
+`(00)(10)(11)(00)` could be `[One, Two, Three, Three]` and `(00)(10)(10)(10)` could be `[One, Two, Three, Four]`  
+Note here that the last bit isn't used in either of those encodings. Here's a list of all possible permutations:
+
+```
+000000  [One, One, One, One]        00000000
+000001  [One, One, One, Two]        00000001
+000010  [One, One, One, Three]      00000010
+000011  [One, One, One, Four]       00000011
+000100  [One, One, Two, Two]        00000100
+000101  [One, One, Two, Three]      00000101
+000110  [One, One, Two, Four]       00000110
+000111  [One, One, Three, Three]    00001000 !
+001000  [One, One, Three, Four]     00000110
+001001  [One, One, Four, Four]      00001100
+001010  [One, Two, Two, Two]        00100000
+001011  [One, Two, Two, Three]      00100010
+001100  [One, Two, Two, Four]       00100001
+001101  [One, Two, Three, Three]    00101000
+001110  [One, Two, Three, Four]     00101010
+001111  [One, Two, Four, Four]      00100100
+010000  [One, Three, Three, Three]  00010000
+010001  [One, Three, Three, Four]   00010010
+010010  [One, Three, Four, Four]    00011000
+010011  [One, Four, Four, Four]     00110000
+010100  [Two, Two, Two, Two]        
+010101  [Two, Two, Two, Three]      
+010110  [Two, Two, Two, Four]       
+010111  [Two, Two, Three, Three]    
+011000  [Two, Two, Three, Four]
+011001  [Two, Two, Four, Four]
+011010  [Two, Three, Three, Three]
+011011  [Two, Three, Three, Four]
+011100  [Two, Three, Four, Four]
+011101  [Two, Four, Four, Four]
+011110  [Three, Three, Three, Three]
+011111  [Three, Three, Three, Four]
+100000  [Three, Three, Four, Four]
+100001  [Three, Four, Four, Four]
+100010  [Four, Four, Four, Four]
+```
+
 Unfortuanetly I've been unable to make a function to convert between them. Though I'm working on it...  
 Until that I guess sorting the elements and looking it up in a table will work 😕
 
