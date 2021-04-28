@@ -1,7 +1,7 @@
 +++
 title = "Unordered Numbers"
 date = 2021-03-01
-updated = 2021-03-04
+updated = 2021-04-28
 
 slug = "unordered"
 [taxonomies]
@@ -16,6 +16,9 @@ The more compact this could be done the faster my `memcpy`s become, and the more
 The main idea is to create a number that represents a single uniqe combination of elements, without the order of those elements mattering.
 
 for example `u([1, 2, 3])` = `u([1, 2, 3])` = \\(65\\) if all the elements are base 10.
+
+<details>
+<summary>Note about A009994</summary>
 
 if you know there are three elements which can be 10 different values, then the number is the same as what's found in [A009994](https://oeis.org/A009994)
 
@@ -262,7 +265,7 @@ for n,i in enumerate(A009994generator(4), start=1):
 ```
 
 </details>
-
+</details>
 
 I believe this could be useful to compress bitfields:
 ```rust
@@ -275,36 +278,33 @@ enum Stuff {
   Four
 }
 ```
-if you put this into a bitfield you could store, `[One, Two, Three, Four]` as something like `00100111` (each element of the bitfield is LSB First for reasons that will become clear later)  
-But if you don't care about whether or not it's `[One, Two, Three, Four]` or `[Two, One, Four, Three]` you could sort the list so that it's `[One, Two, Three, Four]`  
-The first element could be any of the four variants so it "uses" 4 values: `(00)`, the second element can also be any of the 4 variants, it too "uses" 4 values. `(00)(10)`.  
-But now the third element can only be one of three variants, `Two`, `Three`, or `Four`. spending two whole bits on that would be a 25% waste of space! Can we use it later?  
-If we use the "index" of the available options as the bit value we might be able to do it `(00)(10)(10)`.  
-The fourth element can be one of only two variants, `Three`, or `Four`, that's only one bit. We did have one extra value to use from before.  
-`(00)(10)(11)(00)` could be `[One, Two, Three, Three]` and `(00)(10)(10)(10)` could be `[One, Two, Three, Four]`  
-Note here that the last bit isn't used in either of those encodings. Here's a list of all possible permutations:
-
+If you put this into a bitfield you could store, `[One, Two, Three, Four]` as something like `00100111`  
+But if you don't care about whether or not it's `[One, Two, Three, Four]` or `[Two, One, Four, Three]` you could sort the list so that it's `[One, Two, Three, Four]` every time.  
+And then use the fact that the first element could be any of the four variants, the second element can also be any of the 4 variants,  
+but the third element can only be one of three variants, since the last one was `Two`, namely `Two`, `Three`, or `Four`. Spending two whole bits on that would be a 25% waste of space!  
+If we use the "index" of the available options as the bit value we might be able to do something about it.  
+The fourth element can be one of only two variants, `Three`, or `Four`. This would obviously have quite the space savings.
 ```
-000000  [One, One, One, One]        00000000
-000001  [One, One, One, Two]        00000001
-000010  [One, One, One, Three]      00000010
-000011  [One, One, One, Four]       00000011
-000100  [One, One, Two, Two]        00000100
-000101  [One, One, Two, Three]      00000101
-000110  [One, One, Two, Four]       00000110
-000111  [One, One, Three, Three]    00001000 !
-001000  [One, One, Three, Four]     00000110
-001001  [One, One, Four, Four]      00001100
-001010  [One, Two, Two, Two]        00100000
-001011  [One, Two, Two, Three]      00100010
-001100  [One, Two, Two, Four]       00100001
-001101  [One, Two, Three, Three]    00101000
-001110  [One, Two, Three, Four]     00101010
-001111  [One, Two, Four, Four]      00100100
-010000  [One, Three, Three, Three]  00010000
-010001  [One, Three, Three, Four]   00010010
-010010  [One, Three, Four, Four]    00011000
-010011  [One, Four, Four, Four]     00110000
+000000  [One, One, One, One]
+000001  [One, One, One, Two]
+000010  [One, One, One, Three]
+000011  [One, One, One, Four]
+000100  [One, One, Two, Two]
+000101  [One, One, Two, Three]
+000110  [One, One, Two, Four]
+000111  [One, One, Three, Three]
+001000  [One, One, Three, Four]
+001001  [One, One, Four, Four]
+001010  [One, Two, Two, Two]
+001011  [One, Two, Two, Three]
+001100  [One, Two, Two, Four]
+001101  [One, Two, Three, Three]
+001110  [One, Two, Three, Four]
+001111  [One, Two, Four, Four]
+010000  [One, Three, Three, Three]
+010001  [One, Three, Three, Four]
+010010  [One, Three, Four, Four]
+010011  [One, Four, Four, Four]
 010100  [Two, Two, Two, Two]        
 010101  [Two, Two, Two, Three]      
 010110  [Two, Two, Two, Four]       
@@ -322,8 +322,71 @@ Note here that the last bit isn't used in either of those encodings. Here's a li
 100010  [Four, Four, Four, Four]
 ```
 
-Unfortuanetly I've been unable to make a function to convert between them. Though I'm working on it...  
+Unfortuanetly I've been unable to make a function to convert between them without a map. Though I'm working on it...  
 Until that I guess sorting the elements and looking it up in a table will work 😕
+
+
+# Update 2021-04-26 Encoding!
+
+After a lot of attempts and this problem burning in the back of my mind, 2 months later I've found a solution.  
+The breakthrough was figuring out that if you can figure out how to count how many options there are left, you can work out which option you're at.
+
+You could do this by initializing a loop for counting at some state
+{% python() %}
+
+count = 0
+for i in range (0,4):
+  for j in range (i, 4):
+    for k in range(j, 4):
+      for l in range(k, 4):
+        count += 1
+print(count)
+{% end %}
+
+Which we knew, but for some reason it didn't click that we could easilly count the states above our original number by just starting at it.
+
+expressing this as mafs would be:
+
+{% katex(block=true) %}
+\sum_{i = 1}^4 \sum_{j = i}^4 \sum_{k = j}^4 \sum_{l = k}^4 1
+{% end %}
+
+Similarly you can count just the last two digits remove those from the total.  
+This way you can find out which one of those options are the initial state.
+
+{% katex(block=true) %}
+\begin{alignedat}{2}
+&S_4(O, A) &&= \sum_{i = A}^O \sum_{j = i}^O \sum_{k = j}^O \sum_{l = k}^O 1 \\
+&S_3(O, B) &&= \sum_{i = B}^O \sum_{j = i}^O \sum_{k = j}^O 1 \\
+&S_2(O, C) &&= \sum_{i = C}^O \sum_{j = i}^O 1 \\
+&S_1(O, D) &&= O - D \\
+&E(O, A, B, C, D) &&= \underbrace{S_3(O, 1)}_{\text{All options}} - 
+\underbrace{(S_1(O,D) + S_2(O, C+2) + S_3(O, B+2) + S_4(O, A+2))}_{\text{All options above the initial state}}
+\end{alignedat}{2}
+{% end %}
+
+Where O is the base (`4`), and the set size being 4 in this case.
+
+You could probably just, uh, count up instead, but I didn't really think of that at the time...
+
+In the end though you end up with some nice numbers:
+```
+E(4, 0,0,0,0) =  0
+E(4, 0,0,0,1) =  1
+E(4, 0,0,0,2) =  2
+E(4, 0,0,0,3) =  3
+E(4, 0,0,1,1) =  5
+E(4, 0,0,1,2) =  6
+...
+E(4, 3,3,3,3) = 35
+```
+
+# Update 2021-04-28
+
+What I am actually looking for is apparently something called "Arithmetic coding".  
+I can generate a statistical model for which "symbols" should be available in each step really easilly.  
+
+Typical that you find the answer a couple of days after having made progress 🤣
 
 <details>
 <summary>2020-03-01 failed attempt at impementation</summary>
