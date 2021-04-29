@@ -1,7 +1,7 @@
 +++
 title = "Unordered Numbers"
 date = 2021-03-01
-updated = 2021-04-28
+updated = 2021-04-29
 
 slug = "unordered"
 [taxonomies]
@@ -278,12 +278,10 @@ enum Stuff {
   Four
 }
 ```
-If you put this into a bitfield you could store, `[One, Two, Three, Four]` as something like `00100111`  
+If you put this into a bitfield you could store, `[One, Two, Three, Four]` as something like `00100111`.  
 But if you don't care about whether or not it's `[One, Two, Three, Four]` or `[Two, One, Four, Three]` you could sort the list so that it's `[One, Two, Three, Four]` every time.  
-And then use the fact that the first element could be any of the four variants, the second element can also be any of the 4 variants,  
-but the third element can only be one of three variants, since the last one was `Two`, namely `Two`, `Three`, or `Four`. Spending two whole bits on that would be a 25% waste of space!  
-If we use the "index" of the available options as the bit value we might be able to do something about it.  
-The fourth element can be one of only two variants, `Three`, or `Four`. This would obviously have quite the space savings.
+You can then use the fact that the first element could be any of the four variants, the second element can be any of the 4 variants, but the third element can only be one of three variants, since the last one was `Two`, namely `Two`, `Three`, or `Four`. Spending two whole bits on that would be a 25% waste of space!  
+If we use the "index" of the available options as the bit value we might be able to save a lot of space.  
 ```
 000000  [One, One, One, One]
 000001  [One, One, One, Two]
