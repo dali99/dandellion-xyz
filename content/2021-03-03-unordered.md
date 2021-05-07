@@ -360,7 +360,7 @@ This way you can find out which one of those options are the initial state.
 &S_1(O, D) &&= O - D \\
 &E(O, A, B, C, D) &&= \underbrace{S_3(O, 1)}_{\text{All options}} - 
 \underbrace{(S_1(O,D) + S_2(O, C+2) + S_3(O, B+2) + S_4(O, A+2))}_{\text{All options above the initial state}}
-\end{alignedat}{2}
+\end{alignedat}
 {% end %}
 
 Where O is the base (`4`), and the set size being 4 in this case.
