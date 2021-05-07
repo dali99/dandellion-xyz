@@ -326,7 +326,7 @@ Until that I guess sorting the elements and looking it up in a table will work ð
 
 # Update 2021-04-26 Encoding!
 
-After a lot of attempts and this problem burning in the back of my mind, 2 months later I've found a solution.  
+After a lot of attempts, and this problem burning in the back of my mind, 2 months later I've found a solution.  
 The breakthrough was figuring out that if you can figure out how to count how many options there are left, you can work out which option you're at.
 
 You could do this by initializing a loop for counting at some state
@@ -349,7 +349,7 @@ expressing this as mafs would be:
 \sum_{i = 1}^4 \sum_{j = i}^4 \sum_{k = j}^4 \sum_{l = k}^4 1
 {% end %}
 
-Similarly you can count just the last two digits remove those from the total.  
+Similarly you can count just the last two digits, and then remove those from the total.  
 This way you can find out which one of those options are the initial state.
 
 {% katex(block=true) %}
