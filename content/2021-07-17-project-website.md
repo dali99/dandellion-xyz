@@ -3,7 +3,7 @@ title = "Project Showcase: Blog"
 date = 2021-07-17
 updated = 2021-07-18
 
-slug = "projet-blog"
+slug = "project-blog"
 [taxonomies]
 categories = ["Technical", "All"]
 tags = ["Nix", "Zola", "Web Assembly", "Python", "Matrix"]
