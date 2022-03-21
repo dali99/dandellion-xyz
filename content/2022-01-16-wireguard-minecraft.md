@@ -34,7 +34,7 @@ iptables -t nat -A POSTROUTING -o wg0 -p udp --dport 25565 -d 192.168.42.2 -j SN
 ```
 
 These rules mean that before routing takes place all tcp and udp packets which are going to the standard minecraft port `25565` will be changed so that their destination instead points to the desktop computer actually hosting the minecraft server.  
-After routing, the source adress pm the packet gets set to the server's ip adress so that when the minecraft server replies with information. It knows how to route the information back. This has the downside of making you "lose" the player's IP adress, since the minecraft server will think all network traffic comes from the relaying server.  
+After routing, the source adress on the packet gets set to the server's ip adress so that when the minecraft server replies with information. It knows how to route the information back. This has the downside of making you "lose" the player's IP adress, since the minecraft server will think all network traffic comes from the relaying server.  
 To avoid this you would probably need some other tool to do the relaying. Like for example waterfall or some other dedicated minecraft proxy.
 
 We also need allow these packets through the firewall, since its probable your default iptables setup blocks forwarding like this.
