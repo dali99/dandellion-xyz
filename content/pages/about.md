@@ -53,7 +53,7 @@ But I've also done some small things like writing a distributed video encoding s
 
 My favorite programming language is Rust, but I really want to learn Haskell as well.
 
-Of course I play video games as well, though mostly Minecraft and Dota 2!  
+Of course I play video games, though mostly Minecraft and Dota 2!  
 I enjoy listening to music, watching movies and Anime, and playing boardgames.
 
 Bonus point if you know what my avatar refers to!
