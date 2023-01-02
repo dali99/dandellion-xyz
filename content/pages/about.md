@@ -2,24 +2,34 @@
 title = "About"
 path = "about"
 template = "about.html"
+
+[extra]
+semweb_prefixes = [
+    {name = "foaf", href = "http://xmlns.com/foaf/0.1/"},
+    {name = "wd", href = "http://www.wikidata.org/entity/"}
+]
+
+semweb_about = "http://dandellion.xyz/about#me"
 +++
 
+<link rel="foaf:primaryTopic" href="http://dandellion.xyz/about#me" />
+
 # About me
-Hey I'm Dan! I like computers and all things computing! I'm a certified Computer electronics technician,
+Hey I'm <span property="foaf:nick">Dan</span>! I like computers and all things computing! I'm a certified Computer electronics technician,
 and I am currently a second-year student taking computer engineering at NTNU in Trondheim.
 
 ## Early life
 
 I have been interested in computers for as long as I can honestly remember, and have been using linux based distributions as my personal choice for operating systems since the 7th grade.  
 I took an edx course in introduction to computer science (CS50) in secondary school, where I was introduced to C as my first "real" text based programming language
-(Until I had worked mostly in LabView-like languages like robolab, and scratch, with small amounts of bash).
+(Until then I had worked mostly in LabView-like languages like robolab, and scratch, with small amounts of bash).
 
-I was in a club programming LEGO mindstorms and competing in FIRST LEGO LEAGUE since I was 11 till I was too old to compete and where I then transitioned into an instructor role.   
-This experience proved useful when I later taught children how to program during my local makerspace's summer school, and later as an outside instructor for an elementary school.
+I was in a club programming LEGO mindstorms and competing in FIRST LEGO LEAGUE since I was 11 till I was too old to compete, where I then transitioned into an instructor role.   
+This experience proved useful when I taught children how to program during my local makerspace's summer school, and later as an outside instructor for an elementary school.
 
 ## Videregående
 
-Of course I was also active in this aforementioned makerspace [Horten Folkeverksted](https://folkeverkstedet.com/) where I had the role of infrastructure-responsible and sat on the board of directors.  
+Of course I was also active in this aforementioned makerspace <span property="foaf:member" about="http://folkeverkstedet.com" resource="http://dandellion.xyz/about#me">[Horten Folkeverksted](https://folkeverkstedet.com/)</span> where I had the role of infrastructure-responsible and sat on the board of directors.  
 I held presentations during our yearly event "Sommer:hack". Holding talks about Matrix, Nix, and also being responsible for hosting the CTF competition, and an introduction to "ethical hacking".  
 
 I took electrical engineering in high school and specialized into "computers and electronics" where I learned a lot about electronic components and also got to dabble with programming microcontrollers.
@@ -28,8 +38,8 @@ In my third year I was the leader for our youth company, which did electronics r
 
 ## University
 
-After I moved to Trondheim I joined Drift at [Programvareverkstedet](https://www.pvv.ntnu.no/), where we maintain an extremely large amount of legacy infrastructure (Our DNS-server is a MicroVAX II from 1985) - But also have a lot of fun!  
-I've held a course in NixOS and managed to convert a fair few to using nix for their projects. I've bevome Drift's coordinator, and am responsible for our matrix-server.
+After I moved to Trondheim I joined Drift at <span about="wd:Q113262282" property="foaf:member" resource="http://dandellion.xyz/about#me">[Programvareverkstedet](https://www.pvv.ntnu.no/)</span>, where we maintain an extremely large amount of legacy infrastructure (Our DNS-server is a MicroVAX II from 1985) - But also have a lot of fun!  
+I've held a course in NixOS and managed to convert a fair few to using nix for their projects. I've become Drift's coordinator, and am responsible for our matrix-server.
 
 I had a brief stint with [hackerspace-ntnu](https://www.hackerspace-ntnu.no/), [AbelLAN](https://abakus.no/pages/grupper/49-abellan), and am a member of [Omega Verksted](https://www.omegav.ntnu.no/)
 
