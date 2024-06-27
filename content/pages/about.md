@@ -6,61 +6,80 @@ template = "about.html"
 [extra]
 semweb_prefixes = [
     {name = "foaf", href = "http://xmlns.com/foaf/0.1/"},
-    {name = "wd", href = "http://www.wikidata.org/entity/"}
+    {name = "schema", href = "https://schema.org/"},
+    {name = "owl", href = "http://www.w3.org/2002/07/owl#"},
+    {name = "wd", href = "http://www.wikidata.org/entity/"},
+    {name = "wdt", href = "http://www.wikidata.org/prop/direct/"}
 ]
 
-semweb_about = "http://dandellion.xyz/about#me"
+semweb_about = "https://dandellion.xyz/about#me"
+semweb_type = "foaf:Person"
 +++
 
-<link rel="foaf:primaryTopic" href="http://dandellion.xyz/about#me" />
+<link about="http://dandellion.xyz/about" rel="foaf:primaryTopic" href="http://dandellion.xyz/about#me"/>
+<meta property="owl:sameAs" resource="http://dandellion.xyz/about#me"/>
 
 # About me
 Hey I'm <span property="foaf:nick">Dan</span>! I like computers and all things computing! I'm a certified Computer electronics technician,
-and I am currently a second-year student taking computer engineering at NTNU in Trondheim.
+and I am currently a third-year student taking computer engineering at NTNU in Trondheim.
 
 ## Early life
 
-I have been interested in computers for as long as I can honestly remember, and have been using linux based distributions as my personal choice for operating systems since the 7th grade.  
-I took an edx course in introduction to computer science (CS50) in secondary school, where I was introduced to C as my first "real" text based programming language
+I've been interested in computers for as long as I can remember, and have been using linux based distributions as my personal choice for operating systems since the 7th grade.  
+I took an edx course in introduction to computer science (CS50) in secondary school, where I was introduced to C as my first "real" text-based programming language
 (Until then I had worked mostly in LabView-like languages like robolab, and scratch, with small amounts of bash).
 
-I was in a club programming LEGO mindstorms and competing in FIRST LEGO LEAGUE since I was 11 till I was too old to compete, where I then transitioned into an instructor role.   
+<span property="wdt:P54 schema:memberOf" resource="http://robotix.info/#organization">
+I was in a <span about="http://robotix.info/#organization" typeof="schema:SportsOrganization" property="schema:sport" resource="wd:Q170978">robotics</span> club programming LEGO mindstorms and competing in
+<span about="wd:Q445067" property="schema:competitor" resource="http://robotix.info/#organization">FIRST LEGO LEAGUE</span>
+</span> from I was 11 until I was too old to compete, where I then transitioned into an instructor role.   
 This experience proved useful when I taught children how to program during my local makerspace's summer school, and later as an outside instructor for an elementary school.
 
-## Videregående
+## High-School
 
-Of course I was also active in this aforementioned makerspace <span property="foaf:member" about="http://folkeverkstedet.com" resource="http://dandellion.xyz/about#me">[Horten Folkeverksted](https://folkeverkstedet.com/)</span> where I had the role of infrastructure-responsible and sat on the board of directors.  
-I held presentations during our yearly event "Sommer:hack". Holding talks about Matrix, Nix, and also being responsible for hosting the CTF competition, and an introduction to "ethical hacking".  
+During high-school I was active in [Horten Folkeverksted](https://folkeverkstedet.com/)
+where I had the role of infrastructure-responsible and member of the board.  
+I held presentations during our yearly event "Sommer:hack". Holding talks about
+<a property="foaf:topic_interest" resource="wd:Q22906785" href="https://matrix.org">Matrix</a>, 
+<a property="foaf:topic_interest" resource="wd:Q7041957" href="https://nixos.org">Nix</a>,
+and also being responsible for hosting the <span property="foaf:topic_interest" resource="wd:Q67328602">CTF competition</span> with an introduction to "ethical hacking".  
 
-I took electrical engineering in high school and specialized into "computers and electronics" where I learned a lot about electronic components and also got to dabble with programming microcontrollers.
+I took electrical engineering and specialized into "computers and electronics" where I learned a lot about electronic components
+and also got to dabble with programming microcontrollers.
 I'm hoping to post about the big project we did that year at some point, but cutting it short, we made a big rubix-cube out of RGB LEDs, 3D-printing, and steel.  
-In my third year I was the leader for our youth company, which did electronics repair (but mostly helped pentioners with their computers). I was also on the board of the student council.
+In my third year I was the leader for our youth company, which did electronics repair (but mostly helped pentioners with their computers).
+I was also on the board of the student council.
 
 ## University
 
-After I moved to Trondheim I joined Drift at <span about="wd:Q113262282" property="foaf:member" resource="http://dandellion.xyz/about#me">[Programvareverkstedet](https://www.pvv.ntnu.no/)</span>, where we maintain an extremely large amount of legacy infrastructure (Our DNS-server is a MicroVAX II from 1985) - But also have a lot of fun!  
-I've held a course in NixOS and managed to convert a fair few to using nix for their projects. I've become Drift's coordinator, and am responsible for our matrix-server.
+After I moved to Trondheim I joined Drift at <a property="schema:memberOf" resource="wd:Q113262282" href="https://www.pvv.ntnu.no/">Programvareverkstedet</a>,
+where we maintain an extremely large amount of legacy infrastructure (Our DNS-server is a MicroVAX II from 1985) - But also have a lot of fun!  
+I've held a course in <span property="foaf:topic_interest" resource="wd:Q21998874">NixOS</a> and managed to convert a fair few to using nix for their projects.
+I later became Drift's coordinator, and am responsible for our matrix-server.
 
-I had a brief stint with [hackerspace-ntnu](https://www.hackerspace-ntnu.no/), [AbelLAN](https://abakus.no/pages/grupper/49-abellan), and am a member of [Omega Verksted](https://www.omegav.ntnu.no/)
+Here I also met my friends in <a property="schema:memberOf" resource="http://wackattack.eu/#organization" href="https://wackattack.eu">WackAttack</span></a>
+a <span about="http://wackattack.eu/#organization" typeof="schema:SportsOrganization" property="schema:sport" resource="wd:Q7969355">CTF-team</span>
+which won the student division and coming a close 6th overall at Equinor CTF 2023.
 
-I live with a lot of people (>100!), and have a senior role as responsible for our email lists, networking, website and internal tools.
+I had a brief stint with [hackerspace-ntnu](https://www.hackerspace-ntnu.no/), [AbelLAN](https://abakus.no/pages/grupper/49-abellan),
+and am a member of <a property="schema:memberOf" resource="wd:Q97265498" href="https://www.omegav.ntnu.no/">Omega Verksted</a>
 
-I see myself as someone who has fairly deep knowledge about a very broad set of topics in computing. Especially on the linux front and general programming.  
-What I lack in formal education I like to think I make up in experience! I've dipped my toe in so many things that it's hard to mention everything!
+I live with a lot of people (>100!), and have a senior role where I am responsible for our email lists, networking, website and internal tools.
+
 
 # Hobbies
 
-In my spare time I maintain my own infrastructure which has gone through many a variation but has settled on a NixOS based config.
+In my spare time I maintain my own infrastructure which has gone through many a variation but has settled on a (of course) NixOS based config.
 Through this homelab I maintain and host most of the services I use day to day.
 
-I of course also program in my spare time, making software that scratches whatever itch I might have.
-In the most recent years I have worked mostly on infrastructure as code via NixOS (writing modules), and making and maintaing packages.
-But I've also done some small things like writing a distributed video encoding service for AV1, and a couple of matrix bots.
+I also program in my spare time, making software that scratches whatever itch I might have.
+In the most recent years I have worked mostly on infrastructure as code via <a property="foaf:topic_interest" resource="wd:Q21998874" href="https://nixos.org">NixOS</a> (writing modules), and making and maintaining packages.
+But I've also done some small things like writing a distributed video encoding service for <span property="foaf:topic_interest" resource="wd:Q26046105">AV1</span>, and a couple of matrix bots.
 
-My favorite programming language is Rust, but I really want to learn Haskell as well.
+My favorite programming language is <span property="foaf:topic_interest" resource="wd:Q575650">Rust</span>, but I really want to learn Haskell and Erlang/Elixir as well.
 
-Of course I play video games, though mostly Minecraft and Dota 2!  
-I enjoy listening to music, watching movies and Anime, and playing boardgames.
+I sometimes play video games, though mostly <span property="foaf:topic_interest" resource="wd:Q105729297">Minecraft</span> and <span property="foaf:topic_interest" resource="wd:Q771541">Dota 2</span>!  
+I enjoy listening to music, watching movies, <span property="foaf:topic_interest" resource="wd:Q1107">Anime</span>, and playing boardgames.
 
 Bonus point if you know what my avatar refers to!
 
@@ -82,16 +101,17 @@ I'm also an active contributor to [nixpkgs](https://github.com/NixOS/nixpkgs) wh
 * [Broke gstreamer by adding butteraugli and vmaf support to libaom](https://github.com/NixOS/nixpkgs/pull/159461), [but fixed it again for both gstreamer and libjxl](https://github.com/NixOS/nixpkgs/pull/177374)
 * Fixed static compilation of [libjxl](https://github.com/NixOS/nixpkgs/pull/179102) and [libaom](https://github.com/NixOS/nixpkgs/pull/179266) (with lots of help)
 * [Introduced the .mailmap file](https://github.com/NixOS/nixpkgs/pull/179266)
-* Active in the matrix team
+* [Made a module for bluemap](https://github.com/NixOS/nixpkgs/pull/312518)
+* Active in the nixpkgs matrix team
 
 </details>
 
 # Contact Information
 
-e-mail: [daniel.olsen99@gmail.com](mailto:daniel.olsen99@gmail.com)  
-matrix: [@dandellion:dodsorf.as](https://matrix.to/#/@dandellion:dodsorf.as), [URI](matrix:u/dandellion:dodsorf.as)  
-IRC: Dandellion on [libera.chat](https://libera.chat), [OFTC](https://oftc.net/), og [IRCNet](https://www.ircnet.com)  
-XMPP: [dandellion_dodsorf.as@matrix.org](xmpp:dandellion_dodsorf.as@matrix.org)  
+e-mail: <a property="foaf:mbox" href="mailto:daniel.olsen99@gmail.com">daniel.olsen99@gmail.com</a>  
+matrix: <a rel="foaf:account" typeof="foaf:OnlineAccount" resource="matrix:u/dandellion:dodsorf.as" href="https://matrix.to/#/@dandellion:dodsorf.as">@dandellion:dodsorf.as</a>, [URI](matrix:u/dandellion:dodsorf.as)  
+IRC: Dandellion on [IRCNet](https://www.ircnet.com)  
+XMPP: <a rel="foaf:account" typeof="OnlineAccount" href="xmpp:dandellion_dodsorf.as@matrix.org">dandellion_dodsorf.as@matrix.org</a>  
 
 # Other platforms
 

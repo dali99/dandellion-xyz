@@ -3,11 +3,11 @@
     "even": {
       "flake": false,
       "locked": {
-        "lastModified": 1672624951,
-        "narHash": "sha256-yMzLLOZGMRWeM0wEnl7Hh4lIOe2Arz398DFZIPwiJMI=",
+        "lastModified": 1719800345,
+        "narHash": "sha256-uJjWstKqTk73fLlfxkywzlXC5fIR0wszdRRvGwKooBI=",
         "owner": "dali99",
         "repo": "even",
-        "rev": "0fcd2c0608ceb3166e93321e1c8f18d7a23a19b6",
+        "rev": "bbe941bbcc334396bc91f9f42b005bb9d7a43050",
         "type": "github"
       },
       "original": {
@@ -18,11 +18,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1694593561,
-        "narHash": "sha256-WSaIQZ5s9N9bDFkEMTw6P9eaZ9bv39ZhsiW12GtTNM0=",
+        "lastModified": 1719468428,
+        "narHash": "sha256-vN5xJAZ4UGREEglh3lfbbkIj+MPEYMuqewMn4atZFaQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1697b7d480449b01111e352021f46e5879e47643",
+        "rev": "1e3deb3d8a86a870d925760db1a5adecc64d329d",
         "type": "github"
       },
       "original": {
