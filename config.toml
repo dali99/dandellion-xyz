@@ -4,7 +4,7 @@ base_url = "https://dandellion.xyz"
 title = "Daniel Olsen"
 description = "Daniel Olsen's blog"
 
-generate_feed = true
+generate_feeds = true
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true

@@ -3,11 +3,11 @@
     "even": {
       "flake": false,
       "locked": {
-        "lastModified": 1719800345,
-        "narHash": "sha256-uJjWstKqTk73fLlfxkywzlXC5fIR0wszdRRvGwKooBI=",
+        "lastModified": 1733420343,
+        "narHash": "sha256-u6GQiGE3zpljAkczYL78MFIC4Z8nKiPWY+tQXInBEG0=",
         "owner": "dali99",
         "repo": "even",
-        "rev": "bbe941bbcc334396bc91f9f42b005bb9d7a43050",
+        "rev": "cf77678134c23965c88ae16b7565416c220d4307",
         "type": "github"
       },
       "original": {
@@ -18,12 +18,10 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1719468428,
-        "narHash": "sha256-vN5xJAZ4UGREEglh3lfbbkIj+MPEYMuqewMn4atZFaQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1e3deb3d8a86a870d925760db1a5adecc64d329d",
-        "type": "github"
+        "lastModified": 0,
+        "narHash": "sha256-xKel5kd1AbExymxoIfQ7pgcX6hjw9jCgbiBjiUfSVJ8=",
+        "path": "/nix/store/ylrrz211xgjzkcpyiafpq9y2yws7fyah-source",
+        "type": "path"
       },
       "original": {
         "id": "nixpkgs",
